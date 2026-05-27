@@ -1,0 +1,134 @@
+﻿[
+  {
+    "key": {
+      "projects": {
+        "tasks": {
+          "name": "T1A"
+        }
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "projects": {
+        "tasks": {
+          "estimatedHours": {
+            "avg": 5,
+            "sum": 5,
+            "min": 5,
+            "max": 5
+          }
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "projects": {
+        "tasks": {
+          "name": "T1B"
+        }
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "projects": {
+        "tasks": {
+          "estimatedHours": {
+            "avg": 8,
+            "sum": 8,
+            "min": 8,
+            "max": 8
+          }
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "projects": {
+        "tasks": {
+          "name": "T2A"
+        }
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "projects": {
+        "tasks": {
+          "estimatedHours": {
+            "avg": 3,
+            "sum": 3,
+            "min": 3,
+            "max": 3
+          }
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "projects": {
+        "tasks": {
+          "name": "T4A"
+        }
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "projects": {
+        "tasks": {
+          "estimatedHours": {
+            "avg": 10,
+            "sum": 10,
+            "min": 10,
+            "max": 10
+          }
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "projects": {
+        "tasks": {
+          "name": "T4B"
+        }
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "projects": {
+        "tasks": {
+          "estimatedHours": {
+            "avg": 7,
+            "sum": 7,
+            "min": 7,
+            "max": 7
+          }
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "projects": {
+        "tasks": {
+          "name": "T4C"
+        }
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "projects": {
+        "tasks": {
+          "estimatedHours": {
+            "avg": 12,
+            "sum": 12,
+            "min": 12,
+            "max": 12
+          }
+        }
+      }
+    }
+  }
+]

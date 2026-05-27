@@ -1,0 +1,580 @@
+/* Community.HotChocolate.Data.Grouping — sleek, elegant, minimal-colour. */
+
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---------- Typography ---------- */
+
+:root {
+  --ifm-font-family-base:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --ifm-font-family-monospace:
+    'JetBrains Mono', 'SF Mono', Menlo, Monaco, 'Cascadia Code', Consolas,
+    'Liberation Mono', monospace;
+
+  /* Refined typography */
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.65;
+  --ifm-heading-line-height: 1.25;
+
+  --ifm-code-font-size: 88%;
+  --ifm-code-padding-vertical: 0.15rem;
+  --ifm-code-padding-horizontal: 0.35rem;
+
+  /* Heading scale — tighter than default */
+  --ifm-h1-font-size: 1.75rem;
+  --ifm-h2-font-size: 1.25rem;
+  --ifm-h3-font-size: 1.05rem;
+  --ifm-h4-font-size: 0.95rem;
+
+  /* ---------- Light theme: near-monochrome with one cool accent ---------- */
+  --ifm-color-primary: #1f1f23;
+  --ifm-color-primary-dark: #18181b;
+  --ifm-color-primary-darker: #131316;
+  --ifm-color-primary-darkest: #0a0a0c;
+  --ifm-color-primary-light: #2a2a2f;
+  --ifm-color-primary-lighter: #34343a;
+  --ifm-color-primary-lightest: #4a4a52;
+
+  --ifm-background-color: #fdfdfd;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-color-content: #2a2a2f;
+  --ifm-color-content-secondary: #6b6b73;
+  --ifm-color-emphasis-100: #f6f6f7;
+  --ifm-color-emphasis-200: #ebebed;
+  --ifm-color-emphasis-300: #d8d8db;
+  --ifm-color-emphasis-700: #4a4a52;
+
+  --ifm-toc-border-color: transparent;
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.85);
+  --ifm-footer-background-color: #fafafa;
+  --ifm-footer-color: #6b6b73;
+  --ifm-footer-link-color: #2a2a2f;
+
+  --ifm-link-color: #2a2a2f;
+  --ifm-link-decoration: none;
+  --ifm-link-hover-decoration: underline;
+  --ifm-link-hover-color: #000000;
+
+  --ifm-blockquote-color: #6b6b73;
+  --ifm-blockquote-border-color: #d8d8db;
+
+  --ifm-table-border-color: #ebebed;
+  --ifm-table-stripe-background: transparent;
+  --ifm-table-head-background: transparent;
+  --ifm-table-head-color: #2a2a2f;
+
+  --ifm-code-background: #f4f4f5;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.06);
+
+  --ifm-pre-background: #fafafa;
+  --ifm-pre-color: #2a2a2f;
+  --ifm-pre-padding: 1rem;
+  --ifm-pre-line-height: 1.55;
+
+  --ifm-menu-color: #4a4a52;
+  --ifm-menu-color-active: #000000;
+  --ifm-menu-color-background-active: #f4f4f5;
+  --ifm-menu-color-background-hover: #f4f4f5;
+  --ifm-menu-link-padding-vertical: 0.4rem;
+  --ifm-menu-link-padding-horizontal: 0.75rem;
+  --ifm-menu-link-sublist-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b73' stroke-width='2'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E");
+}
+
+/* ---------- Dark theme: deep grey w/ faint cool undertone, layered surfaces ---------- */
+[data-theme='dark'] {
+  --grouping-accent: #b8d4e8;
+  --grouping-accent-hover: #c4e6f1;
+  --grouping-accent-subtle: rgba(160, 216, 233, 0.1);
+
+  --ifm-color-primary: #ededed;
+  --ifm-color-primary-dark: #dadada;
+  --ifm-color-primary-darker: #cdcdcd;
+  --ifm-color-primary-darkest: #a8a8a8;
+  --ifm-color-primary-light: #f4f4f4;
+  --ifm-color-primary-lighter: #f9f9f9;
+  --ifm-color-primary-lightest: #ffffff;
+
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #0e0e0e;
+  --ifm-color-emphasis-100: #292929;
+  --ifm-color-emphasis-200: #3a3a3a;
+  --ifm-color-emphasis-300: #494949;
+  --ifm-color-emphasis-700: #bbbbbb;
+
+  --ifm-color-content: #e0e0e0;
+  --ifm-color-content-secondary: #959595;
+
+  --ifm-navbar-background-color: rgba(26, 26, 26, 0.85);
+  --ifm-footer-background-color: #161616;
+  --ifm-footer-color: #959595;
+  --ifm-footer-link-color: #e0e0e0;
+
+  --ifm-link-color: var(--grouping-accent);
+  --ifm-link-hover-color: var(--grouping-accent-hover);
+
+  --ifm-blockquote-color: #959595;
+  --ifm-blockquote-border-color: #494949;
+
+  --ifm-table-border-color: #3a3a3a;
+  --ifm-table-head-color: #ededed;
+
+  --ifm-pre-background: transparent;
+  --ifm-pre-color: #e0e0e0;
+  --ifm-code-background: var(--grouping-accent-subtle);
+  --docusaurus-highlighted-code-line-bg: rgba(160, 216, 233, 0.08);
+
+  --ifm-menu-color: #bbbbbb;
+  --ifm-menu-color-active: var(--grouping-accent-hover);
+  --ifm-menu-color-background-active: var(--grouping-accent-subtle);
+  --ifm-menu-color-background-hover: #292929;
+  --ifm-menu-link-sublist-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23959595' stroke-width='2'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E");
+}
+
+[data-theme='dark'] code {
+  color: var(--grouping-accent);
+  background: var(--grouping-accent-subtle);
+}
+[data-theme='dark'] pre code {
+  color: inherit;
+  background: transparent;
+}
+[data-theme='dark'] .table-of-contents__link--active {
+  color: var(--grouping-accent);
+}
+[data-theme='dark'] ::selection {
+  background: rgba(160, 216, 233, 0.22);
+  color: #ffffff;
+}
+
+/* ---------- Global ---------- */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  letter-spacing: -0.005em;
+}
+
+/* ---------- Headings: tight tracking, weight 600 ---------- */
+
+h1, h2, h3, h4, h5, h6,
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+h1, .markdown h1 {
+  letter-spacing: -0.03em;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+h3, .markdown h3, h4, .markdown h4 {
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Heading anchor — barely visible */
+.markdown .anchor-with-hide-link::before {
+  display: none;
+}
+.markdown a.hash-link {
+  opacity: 0;
+  margin-left: 0.35rem;
+  font-weight: 400;
+  color: var(--ifm-color-content-secondary);
+  transition: opacity 0.15s ease;
+}
+.markdown h2:hover a.hash-link,
+.markdown h3:hover a.hash-link,
+.markdown h4:hover a.hash-link {
+  opacity: 1;
+}
+
+/* ---------- Navbar: glass-thin, no shadow ---------- */
+
+.navbar {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  height: 56px;
+}
+
+.navbar__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.015em;
+}
+
+.navbar__logo {
+  height: 22px;
+  margin-right: 0.5rem;
+}
+
+.navbar__item {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.navbar__link {
+  color: var(--ifm-color-content-secondary);
+  font-weight: 500;
+}
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--ifm-color-content);
+}
+
+/* ---------- Sidebar: refined, smaller items ---------- */
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.menu {
+  padding: 1rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.menu__list-item {
+  margin: 0;
+}
+
+.menu__link {
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--ifm-color-content-secondary);
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.menu__link:hover {
+  color: var(--ifm-color-content);
+}
+
+.menu__link--active {
+  font-weight: 500;
+  color: var(--ifm-color-content);
+  background-color: var(--ifm-menu-color-background-active);
+}
+
+.menu__list-item-collapsible {
+  border-radius: 6px;
+}
+
+.menu__list-item-collapsible:hover {
+  background-color: transparent;
+}
+
+.menu__link--sublist-caret::after {
+  background-size: 1rem 1rem;
+}
+
+/* Category labels */
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible .menu__link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ifm-color-content-secondary);
+  padding-left: 0.75rem;
+}
+
+/* ---------- Main content ---------- */
+
+.markdown {
+  font-size: 1rem;
+}
+
+.markdown > p,
+.markdown li {
+  line-height: 1.7;
+}
+
+.markdown a:not(.hash-link) {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  transition: border-color 0.15s ease;
+}
+.markdown a:not(.hash-link):hover {
+  text-decoration: none;
+  border-bottom-color: var(--ifm-color-content);
+}
+
+/* ---------- Code blocks ---------- */
+
+code {
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 400;
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-content);
+}
+
+pre code {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  font-size: 0.825rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.theme-code-block {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  box-shadow: none;
+  font-size: 0.825rem;
+}
+
+[data-theme='dark'] .theme-code-block {
+  background: rgba(255, 255, 255, 0.085);
+  border: none;
+  box-shadow: none;
+}
+
+/* Prism's Dracula darkTheme sets an inline pre background; clear it so the glass parent shows through. */
+[data-theme='dark'] .theme-code-block pre {
+  background: transparent !important;
+}
+
+div[class*='codeBlockTitle'] {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ifm-color-content-secondary);
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+button[class*='copyButton'] {
+  background: transparent;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* ---------- Tables: minimal lines ---------- */
+
+.markdown table {
+  display: table;
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+  border: none;
+  margin: 1.5rem 0;
+}
+
+.markdown table thead {
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.markdown table th {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ifm-color-content-secondary);
+  padding: 0.6rem 0.75rem;
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+
+.markdown table td {
+  padding: 0.6rem 0.75rem;
+  border: none;
+  border-bottom: 1px solid var(--ifm-color-emphasis-100);
+  vertical-align: top;
+}
+
+.markdown table tr {
+  background: transparent;
+  border: none;
+}
+
+.markdown table code {
+  font-size: 0.8em;
+  background: var(--ifm-color-emphasis-100);
+}
+
+/* ---------- Blockquotes / admonitions ---------- */
+
+.markdown blockquote {
+  border-left: 2px solid var(--ifm-color-emphasis-300);
+  padding-left: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 1.25rem 0;
+  background: transparent;
+  font-style: normal;
+  color: var(--ifm-color-content-secondary);
+}
+
+.admonition,
+.alert {
+  border-radius: 6px;
+  border-left-width: 2px;
+  font-size: 0.875rem;
+}
+
+/* ---------- Pagination (Next / Previous) ---------- */
+
+.pagination-nav__link {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-emphasis-300);
+  transform: translateY(-1px);
+}
+
+.pagination-nav__sublabel {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ifm-color-content-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.pagination-nav__label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  padding: 2rem 0 1.5rem;
+  font-size: 0.8125rem;
+}
+
+.footer__title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ifm-color-content);
+  margin-bottom: 0.75rem;
+}
+
+.footer__link-item {
+  font-size: 0.8125rem;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.9;
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-color-content);
+  text-decoration: none;
+}
+
+.footer__copyright {
+  font-size: 0.75rem;
+  color: var(--ifm-color-content-secondary);
+  margin-top: 1.5rem;
+}
+
+/* ---------- Table of contents ---------- */
+
+.table-of-contents {
+  font-size: 0.8125rem;
+}
+
+.table-of-contents__link {
+  color: var(--ifm-color-content-secondary);
+  padding: 0.15rem 0;
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: var(--ifm-color-content);
+}
+
+.table-of-contents__left-border {
+  border-left-color: var(--ifm-color-emphasis-200);
+}
+
+/* ---------- Breadcrumbs: small and quiet ---------- */
+
+.breadcrumbs {
+  font-size: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+  background-size: 0.6rem 0.6rem;
+  opacity: 0.5;
+}
+
+.breadcrumbs__link {
+  color: var(--ifm-color-content-secondary);
+  background: transparent;
+  padding: 0.15rem 0.25rem;
+}
+
+.breadcrumbs__link:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  background: transparent;
+  color: var(--ifm-color-content);
+  font-weight: 500;
+}
+
+/* ---------- Scrollbar (webkit) ---------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ifm-color-emphasis-200);
+  border-radius: 5px;
+  border: 2px solid var(--ifm-background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ifm-color-emphasis-300);
+}
+
+/* ---------- Mobile tweaks ---------- */
+
+@media (max-width: 996px) {
+  :root {
+    --ifm-font-size-base: 15px;
+    --ifm-h1-font-size: 1.625rem;
+    --ifm-h2-font-size: 1.25rem;
+  }
+
+  .markdown {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- Selection ---------- */
+
+::selection {
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-content);
+}

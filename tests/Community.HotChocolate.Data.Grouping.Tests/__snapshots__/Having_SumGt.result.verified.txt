@@ -1,0 +1,26 @@
+﻿[
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      }
+    },
+    "aggregate": {
+      "salary": {
+        "sum": 360000
+      }
+    }
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Globex"
+      }
+    },
+    "aggregate": {
+      "salary": {
+        "sum": 345000
+      }
+    }
+  }
+]

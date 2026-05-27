@@ -1,0 +1,160 @@
+using System;
+using System.Collections.Immutable;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Text;
+
+namespace HotChocolate.Data.Grouping.Analyzers;
+
+/// <summary>
+/// Emits an <c>Add{Module}GroupingConfigs</c> extension that registers every concrete
+/// <c>GroupingConfig&lt;T&gt;</c> subclass in the current compilation.
+/// </summary>
+/// <remarks>The <c>{Module}</c> infix is taken from the assembly-level <c>[Module]</c> when present.</remarks>
+[Generator(LanguageNames.CSharp)]
+public sealed class GroupingConfigGenerator : IIncrementalGenerator
+{
+    private const string _baseTypeName = "GroupingConfig";
+    private const string _baseTypeNamespace = "HotChocolate.Data.Grouping.Config";
+    private const string _moduleAttributeFullName = "HotChocolate.ModuleAttribute";
+    private static readonly string _assemblyVersion = typeof(GroupingConfigGenerator).Assembly.GetName().Version?.ToString() ?? "0.0.0";
+
+    public void Initialize(IncrementalGeneratorInitializationContext context)
+    {
+        var candidates = context.SyntaxProvider
+            .CreateSyntaxProvider(
+                predicate: static (node, _) => IsCandidate(node),
+                transform: static (ctx, ct) => Transform(ctx, ct))
+            .Where(static name => name is not null)
+            .Collect();
+
+        var moduleName = context.CompilationProvider.Select(static (compilation, _) =>
+            compilation.Assembly.GetAttributes()
+                .FirstOrDefault(a => a.AttributeClass?.ToDisplayString() == _moduleAttributeFullName)
+                ?.ConstructorArguments.FirstOrDefault().Value as string);
+
+        var combined = candidates.Combine(moduleName);
+        context.RegisterSourceOutput(combined, static (spc, pair) => Emit(spc, pair.Left!, pair.Right));
+    }
+
+    private static bool IsCandidate(SyntaxNode node) =>
+        node is ClassDeclarationSyntax cds
+        && cds.BaseList is { Types.Count: > 0 }
+        && !cds.Modifiers.Any(SyntaxKind.AbstractKeyword)
+        && !cds.Modifiers.Any(SyntaxKind.StaticKeyword);
+
+    private static string? Transform(GeneratorSyntaxContext ctx, CancellationToken ct)
+    {
+        var node = (ClassDeclarationSyntax)ctx.Node;
+        if (ctx.SemanticModel.GetDeclaredSymbol(node, ct) is not INamedTypeSymbol symbol)
+        {
+            return null;
+        }
+
+        if (symbol.IsAbstract || symbol.IsGenericType || !IsAccessibleFromAssembly(symbol))
+        {
+            return null;
+        }
+
+        if (!HasPublicCtor(symbol))
+        {
+            return null;
+        }
+
+        if (!InheritsFromGroupingConfigType(symbol))
+        {
+            return null;
+        }
+
+        return symbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+    }
+
+    // The generated registration class lives in the user's assembly (different namespace
+    // from the config class), so a config type and every containing type must be at least
+    // internal for the generated `AddGroupingConfig<X>()` call to compile.
+    private static bool IsAccessibleFromAssembly(INamedTypeSymbol symbol)
+    {
+        for (INamedTypeSymbol? t = symbol; t is not null; t = t.ContainingType)
+        {
+            if (t.DeclaredAccessibility is not (Accessibility.Public or Accessibility.Internal))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // AddGroupingConfig<T> resolves through ActivatorUtilities, which scans public
+    // ctors only. Accept any class with at least one public ctor — parameterless or
+    // not — so configs can take DI-injected services (matching HotChocolate's
+    // AddType<T>() activation model).
+    private static bool HasPublicCtor(INamedTypeSymbol symbol) =>
+        symbol.InstanceConstructors.Any(c => c.DeclaredAccessibility == Accessibility.Public);
+
+    private static bool InheritsFromGroupingConfigType(INamedTypeSymbol symbol)
+    {
+        for (var bt = symbol.BaseType; bt is not null; bt = bt.BaseType)
+        {
+            if (bt.IsGenericType
+                && bt.Name == _baseTypeName
+                && bt.ContainingNamespace?.ToDisplayString() == _baseTypeNamespace)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void Emit(SourceProductionContext spc, ImmutableArray<string> names, string? moduleName)
+    {
+        if (names.IsDefaultOrEmpty)
+        {
+            return;
+        }
+
+        var sorted = names.Where(n => n is not null).Distinct().OrderBy(n => n, StringComparer.Ordinal).ToList();
+        if (sorted.Count == 0)
+        {
+            return;
+        }
+
+        var methodName = string.IsNullOrEmpty(moduleName)
+            ? "AddGroupingConfigs"
+            : "Add" + moduleName + "GroupingConfigs";
+
+        var sb = new StringBuilder();
+        sb.AppendLine("// <auto-generated/>");
+        sb.AppendLine("#nullable enable");
+        sb.AppendLine();
+        sb.AppendLine("namespace Microsoft.Extensions.DependencyInjection;");
+        sb.AppendLine();
+        sb.Append("[global::System.CodeDom.Compiler.GeneratedCode(\"Community.HotChocolate.Data.Grouping.Analyzers\", \"")
+            .Append(_assemblyVersion)
+            .AppendLine("\")]");
+        sb.AppendLine("public static class GroupingConfigRegistrations");
+        sb.AppendLine("{");
+        sb.AppendLine("    /// <summary>");
+        sb.AppendLine("    /// Registers every <c>GroupingConfig&lt;T&gt;</c> subclass discovered in the");
+        sb.AppendLine("    /// current assembly. Generated by Community.HotChocolate.Data.Grouping.Analyzers.");
+        sb.AppendLine("    /// </summary>");
+        sb.Append("    public static global::HotChocolate.Execution.Configuration.IRequestExecutorBuilder ")
+            .Append(methodName)
+            .AppendLine("(");
+        sb.AppendLine("        this global::HotChocolate.Execution.Configuration.IRequestExecutorBuilder builder)");
+        sb.AppendLine("    {");
+        foreach (var name in sorted)
+        {
+            sb.Append("        global::HotChocolate.Data.Grouping.GroupingSchemaBuilderExtensions.AddGroupingConfig<")
+                .Append(name).AppendLine(">(builder);");
+        }
+        sb.AppendLine("        return builder;");
+        sb.AppendLine("    }");
+        sb.AppendLine("}");
+
+        spc.AddSource("GroupingConfigRegistrations.g.cs", SourceText.From(sb.ToString(), Encoding.UTF8));
+    }
+}

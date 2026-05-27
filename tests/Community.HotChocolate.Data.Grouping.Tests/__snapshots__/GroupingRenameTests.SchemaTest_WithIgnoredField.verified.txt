@@ -1,0 +1,112 @@
+﻿schema {
+  query: GadgetQuery
+}
+
+type GadgetQuery {
+  gadgetGrouping(filterNullParent: Boolean = false): [GadgetGrouping!]!
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type DecimalAggregateResult {
+  avg(having: DecimalOperationFilterInput): Decimal
+  sum(having: DecimalOperationFilterInput): Decimal
+  min(having: DecimalOperationFilterInput): Decimal
+  max(having: DecimalOperationFilterInput): Decimal
+}
+
+type Gadget {
+  id: Int!
+  price: Decimal!
+}
+
+type GadgetAggregate {
+  id: IntAggregateResult
+  price: DecimalAggregateResult
+}
+
+type GadgetGrouping {
+  key: GadgetGroupingKey!
+  count(having: IntOperationFilterInput): Int!
+  aggregate: GadgetAggregate!
+}
+
+type GadgetGroupingKey {
+  id: Int
+  price: Decimal
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type IntAggregateResult {
+  avg(having: FloatOperationFilterInput): Float
+  sum(having: LongOperationFilterInput): Long
+  min(having: IntOperationFilterInput): Int
+  max(having: IntOperationFilterInput): Int
+}
+
+input DecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  in: [Decimal]
+  nin: [Decimal]
+  gt: Decimal
+  ngt: Decimal
+  gte: Decimal
+  ngte: Decimal
+  lt: Decimal
+  nlt: Decimal
+  lte: Decimal
+  nlte: Decimal
+}
+
+input FloatOperationFilterInput {
+  eq: Float
+  neq: Float
+  in: [Float]
+  nin: [Float]
+  gt: Float
+  ngt: Float
+  gte: Float
+  ngte: Float
+  lt: Float
+  nlt: Float
+  lte: Float
+  nlte: Float
+}
+
+input IntOperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int]
+  nin: [Int]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input LongOperationFilterInput {
+  eq: Long
+  neq: Long
+  in: [Long]
+  nin: [Long]
+  gt: Long
+  ngt: Long
+  gte: Long
+  ngte: Long
+  lt: Long
+  nlt: Long
+  lte: Long
+  nlte: Long
+}
+
+"The `Decimal` scalar type represents a decimal floating-point number with high precision."
+scalar Decimal
+  @specifiedBy(url: "https://scalars.graphql.org/chillicream/decimal.html")
+
+"The `Long` scalar type represents a signed 64-bit integer."
+scalar Long
+  @specifiedBy(url: "https://scalars.graphql.org/chillicream/long.html")

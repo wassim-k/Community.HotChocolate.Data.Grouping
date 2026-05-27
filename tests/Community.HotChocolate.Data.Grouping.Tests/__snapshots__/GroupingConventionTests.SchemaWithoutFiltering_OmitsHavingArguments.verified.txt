@@ -1,0 +1,61 @@
+﻿schema {
+  query: MoneyQuery
+}
+
+type MoneyQuery {
+  productGrouping(filterNullParent: Boolean = false): [ProductGrouping!]!
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type BooleanAggregateResult {
+  min: Boolean
+  max: Boolean
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type IntAggregateResult {
+  avg: Float
+  sum: Long
+  min: Int
+  max: Int
+}
+
+type MoneyAggregate {
+  hasValue: BooleanAggregateResult
+  value: MoneyAggregate
+}
+
+type MoneyGroupingKey {
+  hasValue: Boolean
+  value: MoneyGroupingKey
+}
+
+type ProductAggregate {
+  id: IntAggregateResult
+  name: StringAggregateResult
+  price: MoneyAggregate
+}
+
+type ProductGrouping {
+  key: ProductGroupingKey!
+  count: Int!
+  aggregate: ProductAggregate!
+}
+
+type ProductGroupingKey {
+  id: Int
+  name: String
+  price: MoneyGroupingKey
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type StringAggregateResult {
+  min: String
+  max: String
+}
+
+"The `Long` scalar type represents a signed 64-bit integer."
+scalar Long
+  @specifiedBy(url: "https://scalars.graphql.org/chillicream/long.html")
+
+scalar Money

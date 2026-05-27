@@ -1,0 +1,52 @@
+/*
+ * Shiki / rehype-pretty-code styling.
+ *
+ * Token colours are emitted as CSS custom properties (--shiki-light /
+ * --shiki-dark) on every span; this file picks which one to read based on
+ * the active theme. Pure CSS — no inline-style overrides, no flash on
+ * hydration, works before any JS runs.
+ */
+
+[data-rehype-pretty-code-figure] {
+  margin: 1rem 0;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  background-color: color-mix(in srgb, var(--ifm-background-color), var(--ifm-color-emphasis-100) 50%);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 5px;
+  padding: 0.75rem 0;
+}
+
+[data-rehype-pretty-code-figure] pre code {
+  padding: 0;
+  display: grid;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+  padding: 0 1rem;
+}
+
+[data-rehype-pretty-code-figure] pre,
+[data-rehype-pretty-code-figure] pre span {
+  color: var(--shiki-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) [data-rehype-pretty-code-figure] pre,
+  :root:not([data-theme='light']) [data-rehype-pretty-code-figure] pre span {
+    color: var(--shiki-dark);
+  }
+}
+
+[data-theme='dark'] [data-rehype-pretty-code-figure] pre,
+[data-theme='dark'] [data-rehype-pretty-code-figure] pre span {
+  color: var(--shiki-dark);
+}
+
+/* rehype-pretty-code wraps every line in <span data-line>; highlighted
+ * lines additionally get data-highlighted-line. */
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background-color: color-mix(in srgb, transparent, var(--ifm-color-emphasis-300) 35%);
+  box-shadow: inset 2px 0 0 var(--ifm-color-emphasis-700);
+}
