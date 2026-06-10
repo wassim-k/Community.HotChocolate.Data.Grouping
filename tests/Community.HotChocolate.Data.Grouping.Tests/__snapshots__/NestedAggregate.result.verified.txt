@@ -1,0 +1,42 @@
+﻿[
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      }
+    },
+    "count": 4,
+    "aggregate": {
+      "department": {
+        "budget": {
+          "min": 300000
+        }
+      },
+      "company": {
+        "noOfEmployees": {
+          "max": 50
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Globex"
+      }
+    },
+    "count": 4,
+    "aggregate": {
+      "department": {
+        "budget": {
+          "min": 200000
+        }
+      },
+      "company": {
+        "noOfEmployees": {
+          "max": 200
+        }
+      }
+    }
+  }
+]

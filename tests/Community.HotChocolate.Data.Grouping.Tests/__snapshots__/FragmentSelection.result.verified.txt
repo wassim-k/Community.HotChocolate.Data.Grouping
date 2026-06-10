@@ -1,0 +1,41 @@
+﻿[
+  {
+    "key": {
+      "department": {
+        "name": "Engineering"
+      }
+    },
+    "aggregate": {
+      "salary": {
+        "avg": 91250
+      }
+    },
+    "count": 4
+  },
+  {
+    "key": {
+      "department": {
+        "name": "Sales"
+      }
+    },
+    "aggregate": {
+      "salary": {
+        "avg": 97500
+      }
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "department": {
+        "name": null
+      }
+    },
+    "aggregate": {
+      "salary": {
+        "avg": 72500
+      }
+    },
+    "count": 2
+  }
+]

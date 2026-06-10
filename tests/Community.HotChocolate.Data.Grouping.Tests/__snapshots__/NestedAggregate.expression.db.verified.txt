@@ -1,0 +1,6 @@
+﻿[Source].GroupBy(src => new AnonymousType(src.Company.Name)).Select(
+    g => new AnonymousType(
+        g.Key,
+        g.Count(),
+        g.Min(e => (decimal?)e.Department.Budget),
+        g.Max(e => (int?)e.Company.NoOfEmployees)))

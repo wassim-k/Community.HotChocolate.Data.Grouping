@@ -1,0 +1,104 @@
+﻿schema {
+  query: MoneyQuery
+}
+
+type MoneyQuery {
+  productGrouping(filterNullParent: Boolean = false): [ProductGrouping!]!
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type IntAggregateResult {
+  avg(having: FloatOperationFilterInput): Float
+  sum(having: LongOperationFilterInput): Long
+  min(having: IntOperationFilterInput): Int
+  max(having: IntOperationFilterInput): Int
+}
+
+type ProductAggregate {
+  id: IntAggregateResult
+  name: StringAggregateResult
+}
+
+type ProductGrouping {
+  key: ProductGroupingKey!
+  count(having: IntOperationFilterInput): Int!
+  aggregate: ProductAggregate!
+}
+
+type ProductGroupingKey {
+  id: Int
+  name: String
+  price: Money
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type StringAggregateResult {
+  min(having: StringOperationFilterInput): String
+  max(having: StringOperationFilterInput): String
+}
+
+input FloatOperationFilterInput {
+  eq: Float
+  neq: Float
+  in: [Float]
+  nin: [Float]
+  gt: Float
+  ngt: Float
+  gte: Float
+  ngte: Float
+  lt: Float
+  nlt: Float
+  lte: Float
+  nlte: Float
+}
+
+input IntOperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int]
+  nin: [Int]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input LongOperationFilterInput {
+  eq: Long
+  neq: Long
+  in: [Long]
+  nin: [Long]
+  gt: Long
+  ngt: Long
+  gte: Long
+  ngte: Long
+  lt: Long
+  nlt: Long
+  lte: Long
+  nlte: Long
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+"The `Long` scalar type represents a signed 64-bit integer."
+scalar Long
+  @specifiedBy(url: "https://scalars.graphql.org/chillicream/long.html")
+
+scalar Money

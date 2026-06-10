@@ -1,0 +1,38 @@
+﻿[
+  {
+    "key": {
+      "skills": {
+        "name": "C#"
+      }
+    },
+    "count": 2,
+    "aggregate": {
+      "skills": {
+        "level": {
+          "avg": 4.5,
+          "sum": 9,
+          "min": 4,
+          "max": 5
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "skills": {
+        "name": "Python"
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "skills": {
+        "level": {
+          "avg": 3,
+          "sum": 3,
+          "min": 3,
+          "max": 3
+        }
+      }
+    }
+  }
+]

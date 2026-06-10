@@ -1,0 +1,164 @@
+﻿[
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      },
+      "department": {
+        "name": "Engineering"
+      }
+    },
+    "count": 2,
+    "aggregate": {
+      "salary": {
+        "avg": 90000,
+        "sum": 180000
+      },
+      "company": {
+        "noOfEmployees": {
+          "min": 50
+        }
+      },
+      "department": {
+        "budget": {
+          "max": 500000
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      },
+      "department": {
+        "name": "Sales"
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "salary": {
+        "avg": 120000,
+        "sum": 120000
+      },
+      "company": {
+        "noOfEmployees": {
+          "min": 50
+        }
+      },
+      "department": {
+        "budget": {
+          "max": 300000
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      },
+      "department": {
+        "name": null
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "salary": {
+        "avg": 60000,
+        "sum": 60000
+      },
+      "company": {
+        "noOfEmployees": {
+          "min": 50
+        }
+      },
+      "department": {
+        "budget": {
+          "max": null
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Globex"
+      },
+      "department": {
+        "name": "Engineering"
+      }
+    },
+    "count": 2,
+    "aggregate": {
+      "salary": {
+        "avg": 92500,
+        "sum": 185000
+      },
+      "company": {
+        "noOfEmployees": {
+          "min": 200
+        }
+      },
+      "department": {
+        "budget": {
+          "max": 700000
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Globex"
+      },
+      "department": {
+        "name": "Sales"
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "salary": {
+        "avg": 75000,
+        "sum": 75000
+      },
+      "company": {
+        "noOfEmployees": {
+          "min": 200
+        }
+      },
+      "department": {
+        "budget": {
+          "max": 400000
+        }
+      }
+    }
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Globex"
+      },
+      "department": {
+        "name": null
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "salary": {
+        "avg": 85000,
+        "sum": 85000
+      },
+      "company": {
+        "noOfEmployees": {
+          "min": 200
+        }
+      },
+      "department": {
+        "budget": {
+          "max": 200000
+        }
+      }
+    }
+  }
+]

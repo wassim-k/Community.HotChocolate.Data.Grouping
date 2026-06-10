@@ -1,0 +1,46 @@
+﻿[
+  {
+    "key": {
+      "projects": {
+        "name": "Alpha"
+      },
+      "skills": {
+        "name": "C#"
+      }
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Alpha"
+      },
+      "skills": {
+        "name": "Python"
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Beta"
+      },
+      "skills": {
+        "name": "C#"
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Beta"
+      },
+      "skills": {
+        "name": "Python"
+      }
+    },
+    "count": 1
+  }
+]

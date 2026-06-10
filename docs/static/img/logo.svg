@@ -1,0 +1,15 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Community.HotChocolate.Data.Grouping">
+  <!-- Scale 1.15x around the content's natural center (100, 105) and shift up 5
+       so the rendered icon sits centered in a square viewBox. -->
+  <g transform="translate(-15 -20.75) scale(1.15)">
+    <!-- GraphQL braces -->
+    <g fill="none" stroke="#a0d8e9" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 50 60 Q 30 60 30 78 L 30 102 Q 30 107 18 107 Q 30 107 30 112 L 30 132 Q 30 150 50 150" />
+      <path d="M 150 60 Q 170 60 170 78 L 170 102 Q 170 107 182 107 Q 170 107 170 112 L 170 132 Q 170 150 150 150" />
+    </g>
+    <!-- Σ (sigma) — aggregation symbol -->
+    <polyline points="128,72 75,72 105,105 75,138 128,138"
+              fill="none" stroke="#ff79c6" stroke-width="13"
+              stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

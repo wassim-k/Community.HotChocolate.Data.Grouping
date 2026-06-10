@@ -1,0 +1,42 @@
+﻿[
+  {
+    "key": {
+      "manager": {
+        "projects": {
+          "name": "Alpha"
+        }
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "manager": {
+        "projects": {
+          "name": "Beta"
+        }
+      }
+    },
+    "count": 4
+  },
+  {
+    "key": {
+      "manager": {
+        "projects": {
+          "name": "Delta"
+        }
+      }
+    },
+    "count": 3
+  },
+  {
+    "key": {
+      "manager": {
+        "projects": {
+          "name": "Gamma"
+        }
+      }
+    },
+    "count": 3
+  }
+]
