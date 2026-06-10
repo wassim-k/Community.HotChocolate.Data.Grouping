@@ -1,0 +1,14 @@
+﻿[
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      }
+    },
+    "aggregate": {
+      "bonus": {
+        "sum": 30000
+      }
+    }
+  }
+]

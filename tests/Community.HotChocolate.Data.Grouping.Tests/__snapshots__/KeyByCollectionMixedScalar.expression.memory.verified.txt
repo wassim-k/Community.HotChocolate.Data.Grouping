@@ -1,0 +1,7 @@
+﻿EnumerableQuery
+    .SelectMany(
+        src => src.Projects ?? Enumerable.Empty(),
+        (src, e0) => new AnonymousType(src, e0))
+    .GroupBy(
+        src => new AnonymousType(src.Item2.Name, (src.Item1.Company != null) ? src.Item1.Company.Name : null))
+    .Select(g => new AnonymousType(g.Key, g.Count()))

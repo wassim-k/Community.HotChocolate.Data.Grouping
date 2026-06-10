@@ -1,0 +1,4 @@
+﻿EnumerableQuery
+    .Where(src => src.Department != null)
+    .GroupBy(src => new AnonymousType((src.Department != null) ? src.Department.Name : null))
+    .Select(g => new AnonymousType(g.Key, g.Count()))

@@ -1,0 +1,16 @@
+﻿EnumerableQuery
+    .SelectMany(
+        src => src.Projects ?? Enumerable.Empty(),
+        (src, e0) => new AnonymousType(src, e0))
+    .SelectMany(
+        c1 => c1.Item2.Tasks ?? Enumerable.Empty(),
+        (c1, e1) => new AnonymousType(c1.Item1, c1.Item2, e1))
+    .GroupBy(src => new AnonymousType(src.Item3.Name))
+    .Select(
+        g => new AnonymousType(
+            g.Key,
+            g.Count(),
+            g.Average(e => (decimal?)e.Item3.EstimatedHours),
+            g.Sum(e => (decimal?)e.Item3.EstimatedHours),
+            g.Min(e => (decimal?)e.Item3.EstimatedHours),
+            g.Max(e => (decimal?)e.Item3.EstimatedHours)))

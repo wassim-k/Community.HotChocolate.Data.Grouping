@@ -1,0 +1,56 @@
+﻿[
+  {
+    "key": {
+      "departmentId": 1,
+      "department": {
+        "name": "Engineering"
+      }
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "departmentId": 2,
+      "department": {
+        "name": "Sales"
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "departmentId": 3,
+      "department": {
+        "name": "Engineering"
+      }
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "departmentId": 4,
+      "department": {
+        "name": "Sales"
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "departmentId": 5,
+      "department": {
+        "name": null
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "departmentId": null,
+      "department": {
+        "name": null
+      }
+    },
+    "count": 1
+  }
+]

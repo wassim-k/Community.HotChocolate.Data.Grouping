@@ -1,0 +1,58 @@
+﻿[
+  {
+    "key": {
+      "projects": {
+        "name": "Alpha"
+      }
+    },
+    "count": 4,
+    "aggregate": {
+      "salary": {
+        "avg": 82500,
+        "sum": 330000
+      }
+    }
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Beta"
+      }
+    },
+    "count": 3,
+    "aggregate": {
+      "salary": {
+        "avg": 101666.67,
+        "sum": 305000
+      }
+    }
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Delta"
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "salary": {
+        "avg": 120000,
+        "sum": 120000
+      }
+    }
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Gamma"
+      }
+    },
+    "count": 1,
+    "aggregate": {
+      "salary": {
+        "avg": 120000,
+        "sum": 120000
+      }
+    }
+  }
+]

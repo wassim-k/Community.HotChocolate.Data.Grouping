@@ -1,0 +1,23 @@
+﻿[
+  {
+    "key": {
+      "department": {
+        "name": "Engineering"
+      }
+    }
+  },
+  {
+    "key": {
+      "department": {
+        "name": "Sales"
+      }
+    }
+  },
+  {
+    "key": {
+      "department": {
+        "name": null
+      }
+    }
+  }
+]

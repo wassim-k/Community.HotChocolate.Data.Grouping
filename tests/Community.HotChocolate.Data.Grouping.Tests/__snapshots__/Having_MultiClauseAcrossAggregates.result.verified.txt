@@ -1,0 +1,15 @@
+﻿[
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      }
+    },
+    "count": 4,
+    "aggregate": {
+      "salary": {
+        "sum": 360000
+      }
+    }
+  }
+]

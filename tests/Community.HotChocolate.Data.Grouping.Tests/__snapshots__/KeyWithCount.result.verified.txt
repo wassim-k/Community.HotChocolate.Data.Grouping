@@ -1,0 +1,68 @@
+﻿[
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      },
+      "department": {
+        "name": "Engineering"
+      }
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      },
+      "department": {
+        "name": "Sales"
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Acme"
+      },
+      "department": {
+        "name": null
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Globex"
+      },
+      "department": {
+        "name": "Engineering"
+      }
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Globex"
+      },
+      "department": {
+        "name": "Sales"
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "company": {
+        "name": "Globex"
+      },
+      "department": {
+        "name": null
+      }
+    },
+    "count": 1
+  }
+]

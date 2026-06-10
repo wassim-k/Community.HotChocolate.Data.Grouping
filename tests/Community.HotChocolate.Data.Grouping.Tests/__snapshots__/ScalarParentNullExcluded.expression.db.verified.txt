@@ -1,0 +1,4 @@
+﻿[Source]
+    .Where(src => src.Department != null)
+    .GroupBy(src => new AnonymousType(src.Department.Name))
+    .Select(g => new AnonymousType(g.Key, g.Count()))

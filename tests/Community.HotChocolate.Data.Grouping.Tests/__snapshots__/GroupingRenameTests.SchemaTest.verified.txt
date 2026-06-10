@@ -1,0 +1,157 @@
+﻿schema {
+  query: RenamedTestQuery
+}
+
+type RenamedTestQuery {
+  testThingGrouping(filterNullParent: Boolean = false): [CustomNamedThingGrouping!]!
+}
+
+type CustomNamedNested {
+  id: Int!
+  label: String!
+  weight: Int!
+}
+
+type CustomNamedNestedAggregate {
+  id: IntAggregateResult
+  label: StringAggregateResult
+  weight: IntAggregateResult
+}
+
+type CustomNamedNestedGroupingKey {
+  id: Int
+  label: String
+  weight: Int
+}
+
+type CustomNamedThing {
+  id: Int!
+  name: String!
+  amount: Decimal!
+  nested: CustomNamedNested
+}
+
+type CustomNamedThingAggregate {
+  id: IntAggregateResult
+  name: StringAggregateResult
+  amount: DecimalAggregateResult
+  nested: CustomNamedNestedAggregate
+}
+
+type CustomNamedThingGrouping {
+  key: CustomNamedThingGroupingKey!
+  count(having: IntOperationFilterInput): Int!
+  aggregate: CustomNamedThingAggregate!
+}
+
+type CustomNamedThingGroupingKey {
+  id: Int
+  name: String
+  amount: Decimal
+  nested: CustomNamedNestedGroupingKey
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type DecimalAggregateResult {
+  avg(having: DecimalOperationFilterInput): Decimal
+  sum(having: DecimalOperationFilterInput): Decimal
+  min(having: DecimalOperationFilterInput): Decimal
+  max(having: DecimalOperationFilterInput): Decimal
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type IntAggregateResult {
+  avg(having: FloatOperationFilterInput): Float
+  sum(having: LongOperationFilterInput): Long
+  min(having: IntOperationFilterInput): Int
+  max(having: IntOperationFilterInput): Int
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type StringAggregateResult {
+  min(having: StringOperationFilterInput): String
+  max(having: StringOperationFilterInput): String
+}
+
+input DecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  in: [Decimal]
+  nin: [Decimal]
+  gt: Decimal
+  ngt: Decimal
+  gte: Decimal
+  ngte: Decimal
+  lt: Decimal
+  nlt: Decimal
+  lte: Decimal
+  nlte: Decimal
+}
+
+input FloatOperationFilterInput {
+  eq: Float
+  neq: Float
+  in: [Float]
+  nin: [Float]
+  gt: Float
+  ngt: Float
+  gte: Float
+  ngte: Float
+  lt: Float
+  nlt: Float
+  lte: Float
+  nlte: Float
+}
+
+input IntOperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int]
+  nin: [Int]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input LongOperationFilterInput {
+  eq: Long
+  neq: Long
+  in: [Long]
+  nin: [Long]
+  gt: Long
+  ngt: Long
+  gte: Long
+  ngte: Long
+  lt: Long
+  nlt: Long
+  lte: Long
+  nlte: Long
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+"The `Decimal` scalar type represents a decimal floating-point number with high precision."
+scalar Decimal
+  @specifiedBy(url: "https://scalars.graphql.org/chillicream/decimal.html")
+
+"The `Long` scalar type represents a signed 64-bit integer."
+scalar Long
+  @specifiedBy(url: "https://scalars.graphql.org/chillicream/long.html")

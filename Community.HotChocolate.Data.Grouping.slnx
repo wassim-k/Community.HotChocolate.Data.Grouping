@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Community.HotChocolate.Data.Grouping/Community.HotChocolate.Data.Grouping.csproj" />
+    <Project Path="src/Community.HotChocolate.Data.Grouping.Analyzers/Community.HotChocolate.Data.Grouping.Analyzers.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Community.HotChocolate.Data.Grouping.Tests/Community.HotChocolate.Data.Grouping.Tests.csproj" />
+    <Project Path="tests/Community.HotChocolate.Data.Grouping.Analyzers.Tests/Community.HotChocolate.Data.Grouping.Analyzers.Tests.csproj" />
+  </Folder>
+</Solution>

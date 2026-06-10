@@ -1,0 +1,8 @@
+﻿[Source].GroupBy(src => new AnonymousType("_")).Select(
+    g => new AnonymousType(
+        g.Key,
+        g.Count(),
+        g.Average(e => (double?)e.Salary),
+        g.Sum(e => (double?)e.Salary),
+        g.Min(e => (double?)e.Salary),
+        g.Max(e => (double?)e.Salary)))

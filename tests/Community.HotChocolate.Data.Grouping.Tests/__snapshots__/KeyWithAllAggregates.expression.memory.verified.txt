@@ -1,0 +1,11 @@
+﻿EnumerableQuery.GroupBy(
+    src => new AnonymousType(
+        (src.Company != null) ? src.Company.Name : null,
+        (src.Department != null) ? src.Department.Name : null)).Select(
+    g => new AnonymousType(
+        g.Key,
+        g.Count(),
+        g.Average(e => (double?)e.Salary),
+        g.Sum(e => (double?)e.Salary),
+        g.Min(e => (e.Company != null) ? (int?)e.Company.NoOfEmployees : null),
+        g.Max(e => (e.Department != null) ? (decimal?)e.Department.Budget : null)))

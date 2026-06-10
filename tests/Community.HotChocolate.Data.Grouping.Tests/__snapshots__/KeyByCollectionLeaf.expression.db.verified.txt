@@ -1,0 +1,4 @@
+﻿[Source]
+    .SelectMany(src => src.Projects)
+    .GroupBy(src => new AnonymousType(src.Name))
+    .Select(g => new AnonymousType(g.Key, g.Count()))

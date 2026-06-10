@@ -1,0 +1,11 @@
+﻿EnumerableQuery
+    .SelectMany(src => src.Projects ?? Enumerable.Empty())
+    .GroupBy(src => new AnonymousType(src.Name))
+    .Select(
+        g => new AnonymousType(
+            g.Key,
+            g.Count(),
+            g.Average(e => (decimal?)e.Budget),
+            g.Sum(e => (decimal?)e.Budget),
+            g.Min(e => (decimal?)e.Budget),
+            g.Max(e => (decimal?)e.Budget)))

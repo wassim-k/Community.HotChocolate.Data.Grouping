@@ -1,0 +1,68 @@
+﻿[
+  {
+    "key": {
+      "projects": {
+        "name": "Alpha"
+      },
+      "company": {
+        "name": "Acme"
+      }
+    },
+    "count": 3
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Alpha"
+      },
+      "company": {
+        "name": "Globex"
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Beta"
+      },
+      "company": {
+        "name": "Acme"
+      }
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Beta"
+      },
+      "company": {
+        "name": "Globex"
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Delta"
+      },
+      "company": {
+        "name": "Acme"
+      }
+    },
+    "count": 1
+  },
+  {
+    "key": {
+      "projects": {
+        "name": "Gamma"
+      },
+      "company": {
+        "name": "Acme"
+      }
+    },
+    "count": 1
+  }
+]

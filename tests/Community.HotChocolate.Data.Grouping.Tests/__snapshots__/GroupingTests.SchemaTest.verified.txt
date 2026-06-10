@@ -1,0 +1,331 @@
+﻿schema {
+  query: Query
+}
+
+type Query {
+  memoryEmployeeGrouping(
+    filterNullParent: Boolean = false
+    where: EmployeeFilterInput
+  ): [EmployeeGrouping!]!
+  sqlEmployeeGrouping(
+    filterNullParent: Boolean = false
+    where: EmployeeFilterInput
+  ): [EmployeeGrouping!]!
+  mongoEmployeeGrouping(
+    filterNullParent: Boolean = false
+    where: EmployeeFilterInput
+  ): [EmployeeGrouping!]!
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type BooleanAggregateResult {
+  min(having: BooleanOperationFilterInput): Boolean
+  max(having: BooleanOperationFilterInput): Boolean
+}
+
+type CompanyAggregate {
+  id: IntAggregateResult
+  name: StringAggregateResult
+  noOfEmployees: IntAggregateResult
+}
+
+type CompanyGroupingKey {
+  id: Int
+  name: String
+  noOfEmployees: Int
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type DecimalAggregateResult {
+  avg(having: DecimalOperationFilterInput): Decimal
+  sum(having: DecimalOperationFilterInput): Decimal
+  min(having: DecimalOperationFilterInput): Decimal
+  max(having: DecimalOperationFilterInput): Decimal
+}
+
+type DepartmentAggregate {
+  id: IntAggregateResult
+  name: StringAggregateResult
+  budget: DecimalAggregateResult
+}
+
+type DepartmentGroupingKey {
+  id: Int
+  name: String
+  budget: Decimal
+}
+
+type EmployeeAggregate {
+  id: IntAggregateResult
+  name: StringAggregateResult
+  active: BooleanAggregateResult
+  salary: FloatAggregateResult
+  bonus: DecimalAggregateResult
+  departmentId: IntAggregateResult
+  department: DepartmentAggregate
+  companyId: IntAggregateResult
+  company: CompanyAggregate
+  projects: ProjectAggregate
+  skills: SkillAggregate
+  managerId: IntAggregateResult
+  manager: EmployeeAggregate
+}
+
+type EmployeeGrouping {
+  key: EmployeeGroupingKey!
+  count(having: IntOperationFilterInput): Int!
+  aggregate: EmployeeAggregate!
+}
+
+type EmployeeGroupingKey {
+  id: Int
+  name: String
+  active: Boolean
+  salary: Float
+  bonus: Decimal
+  departmentId: Int
+  department: DepartmentGroupingKey
+  companyId: Int
+  company: CompanyGroupingKey
+  projects: ProjectGroupingKey
+  skills: SkillGroupingKey
+  managerId: Int
+  manager: EmployeeGroupingKey
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type FloatAggregateResult {
+  avg(having: FloatOperationFilterInput): Float
+  sum(having: FloatOperationFilterInput): Float
+  min(having: FloatOperationFilterInput): Float
+  max(having: FloatOperationFilterInput): Float
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type IntAggregateResult {
+  avg(having: FloatOperationFilterInput): Float
+  sum(having: LongOperationFilterInput): Long
+  min(having: IntOperationFilterInput): Int
+  max(having: IntOperationFilterInput): Int
+}
+
+type ProjectAggregate {
+  id: IntAggregateResult
+  name: StringAggregateResult
+  budget: DecimalAggregateResult
+  employeeId: IntAggregateResult
+  tasks: TaskAggregate
+}
+
+type ProjectGroupingKey {
+  id: Int
+  name: String
+  budget: Decimal
+  employeeId: Int
+  tasks: TaskGroupingKey
+}
+
+type SkillAggregate {
+  id: IntAggregateResult
+  name: StringAggregateResult
+  level: IntAggregateResult
+  employeeId: IntAggregateResult
+}
+
+type SkillGroupingKey {
+  id: Int
+  name: String
+  level: Int
+  employeeId: Int
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type StringAggregateResult {
+  min(having: StringOperationFilterInput): String
+  max(having: StringOperationFilterInput): String
+}
+
+type TaskAggregate {
+  id: IntAggregateResult
+  name: StringAggregateResult
+  estimatedHours: DecimalAggregateResult
+  projectId: IntAggregateResult
+}
+
+type TaskGroupingKey {
+  id: Int
+  name: String
+  estimatedHours: Decimal
+  projectId: Int
+}
+
+input BooleanOperationFilterInput {
+  eq: Boolean
+  neq: Boolean
+}
+
+input CompanyFilterInput {
+  and: [CompanyFilterInput!]
+  or: [CompanyFilterInput!]
+  id: IntOperationFilterInput
+  name: StringOperationFilterInput
+  noOfEmployees: IntOperationFilterInput
+}
+
+input DecimalOperationFilterInput {
+  eq: Decimal
+  neq: Decimal
+  in: [Decimal]
+  nin: [Decimal]
+  gt: Decimal
+  ngt: Decimal
+  gte: Decimal
+  ngte: Decimal
+  lt: Decimal
+  nlt: Decimal
+  lte: Decimal
+  nlte: Decimal
+}
+
+input DepartmentFilterInput {
+  and: [DepartmentFilterInput!]
+  or: [DepartmentFilterInput!]
+  id: IntOperationFilterInput
+  name: StringOperationFilterInput
+  budget: DecimalOperationFilterInput
+}
+
+input EmployeeFilterInput {
+  and: [EmployeeFilterInput!]
+  or: [EmployeeFilterInput!]
+  id: IntOperationFilterInput
+  name: StringOperationFilterInput
+  active: BooleanOperationFilterInput
+  salary: FloatOperationFilterInput
+  bonus: DecimalOperationFilterInput
+  departmentId: IntOperationFilterInput
+  department: DepartmentFilterInput
+  companyId: IntOperationFilterInput
+  company: CompanyFilterInput
+  projects: ListFilterInputTypeOfProjectFilterInput
+  skills: ListFilterInputTypeOfSkillFilterInput
+  managerId: IntOperationFilterInput
+  manager: EmployeeFilterInput
+}
+
+input FloatOperationFilterInput {
+  eq: Float
+  neq: Float
+  in: [Float]
+  nin: [Float]
+  gt: Float
+  ngt: Float
+  gte: Float
+  ngte: Float
+  lt: Float
+  nlt: Float
+  lte: Float
+  nlte: Float
+}
+
+input IntOperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int]
+  nin: [Int]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input ListFilterInputTypeOfProjectFilterInput {
+  all: ProjectFilterInput
+  none: ProjectFilterInput
+  some: ProjectFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfSkillFilterInput {
+  all: SkillFilterInput
+  none: SkillFilterInput
+  some: SkillFilterInput
+  any: Boolean
+}
+
+input ListFilterInputTypeOfTaskFilterInput {
+  all: TaskFilterInput
+  none: TaskFilterInput
+  some: TaskFilterInput
+  any: Boolean
+}
+
+input LongOperationFilterInput {
+  eq: Long
+  neq: Long
+  in: [Long]
+  nin: [Long]
+  gt: Long
+  ngt: Long
+  gte: Long
+  ngte: Long
+  lt: Long
+  nlt: Long
+  lte: Long
+  nlte: Long
+}
+
+input ProjectFilterInput {
+  and: [ProjectFilterInput!]
+  or: [ProjectFilterInput!]
+  id: IntOperationFilterInput
+  name: StringOperationFilterInput
+  budget: DecimalOperationFilterInput
+  employeeId: IntOperationFilterInput
+  tasks: ListFilterInputTypeOfTaskFilterInput
+}
+
+input SkillFilterInput {
+  and: [SkillFilterInput!]
+  or: [SkillFilterInput!]
+  id: IntOperationFilterInput
+  name: StringOperationFilterInput
+  level: IntOperationFilterInput
+  employeeId: IntOperationFilterInput
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+input TaskFilterInput {
+  and: [TaskFilterInput!]
+  or: [TaskFilterInput!]
+  id: IntOperationFilterInput
+  name: StringOperationFilterInput
+  estimatedHours: DecimalOperationFilterInput
+  projectId: IntOperationFilterInput
+}
+
+"The `Decimal` scalar type represents a decimal floating-point number with high precision."
+scalar Decimal
+  @specifiedBy(url: "https://scalars.graphql.org/chillicream/decimal.html")
+
+"The `Long` scalar type represents a signed 64-bit integer."
+scalar Long
+  @specifiedBy(url: "https://scalars.graphql.org/chillicream/long.html")

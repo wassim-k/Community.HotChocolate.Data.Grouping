@@ -1,0 +1,11 @@
+﻿[Source]
+    .SelectMany(src => src.Skills)
+    .GroupBy(src => new AnonymousType(src.Name))
+    .Select(
+        g => new AnonymousType(
+            g.Key,
+            g.Count(),
+            g.Average(e => (double?)e.Level),
+            g.Sum(e => (long?)e.Level),
+            g.Min(e => (int?)e.Level),
+            g.Max(e => (int?)e.Level)))
