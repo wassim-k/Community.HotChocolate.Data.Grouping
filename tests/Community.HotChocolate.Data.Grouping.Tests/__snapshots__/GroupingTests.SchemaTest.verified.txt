@@ -69,6 +69,7 @@ type EmployeeAggregate {
   skills: SkillAggregate
   managerId: IntAggregateResult
   manager: EmployeeAggregate
+  seniority: SeniorityAggregateResult
 }
 
 type EmployeeGrouping {
@@ -91,6 +92,7 @@ type EmployeeGroupingKey {
   skills: SkillGroupingKey
   managerId: Int
   manager: EmployeeGroupingKey
+  seniority: Seniority
 }
 
 "Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
@@ -123,6 +125,12 @@ type ProjectGroupingKey {
   budget: Decimal
   employeeId: Int
   tasks: TaskGroupingKey
+}
+
+"Operation slots for a single leaf's aggregates within a bucket. Absent ops stay null."
+type SeniorityAggregateResult {
+  min(having: NullableOfSeniorityOperationFilterInput): Seniority
+  max(having: NullableOfSeniorityOperationFilterInput): Seniority
 }
 
 type SkillAggregate {
@@ -211,6 +219,7 @@ input EmployeeFilterInput {
   skills: ListFilterInputTypeOfSkillFilterInput
   managerId: IntOperationFilterInput
   manager: EmployeeFilterInput
+  seniority: NullableOfSeniorityOperationFilterInput
 }
 
 input FloatOperationFilterInput {
@@ -279,6 +288,13 @@ input LongOperationFilterInput {
   nlte: Long
 }
 
+input NullableOfSeniorityOperationFilterInput {
+  eq: Seniority
+  neq: Seniority
+  in: [Seniority]
+  nin: [Seniority]
+}
+
 input ProjectFilterInput {
   and: [ProjectFilterInput!]
   or: [ProjectFilterInput!]
@@ -320,6 +336,12 @@ input TaskFilterInput {
   name: StringOperationFilterInput
   estimatedHours: DecimalOperationFilterInput
   projectId: IntOperationFilterInput
+}
+
+enum Seniority {
+  JUNIOR
+  MID
+  SENIOR
 }
 
 "The `Decimal` scalar type represents a decimal floating-point number with high precision."

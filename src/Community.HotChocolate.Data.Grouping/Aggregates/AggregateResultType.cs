@@ -210,3 +210,14 @@ internal sealed class TimeSpanAggregateResultType : ComparableAggregateResultTyp
         base.Configure(descriptor);
     }
 }
+
+
+internal sealed class EnumAggregateResultType<TEnum> : ComparableAggregateResultType<TEnum>
+    where TEnum : struct, Enum
+{
+    protected override void Configure(IAggregateResultTypeDescriptor descriptor)
+    {
+        descriptor.Name(typeof(TEnum).Name + "AggregateResult");
+        base.Configure(descriptor);
+    }
+}

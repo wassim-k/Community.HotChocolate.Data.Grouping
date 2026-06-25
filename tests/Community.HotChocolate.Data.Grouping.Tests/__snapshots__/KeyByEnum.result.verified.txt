@@ -1,0 +1,26 @@
+﻿[
+  {
+    "key": {
+      "seniority": "JUNIOR"
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "seniority": "MID"
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "seniority": "SENIOR"
+    },
+    "count": 2
+  },
+  {
+    "key": {
+      "seniority": null
+    },
+    "count": 2
+  }
+]

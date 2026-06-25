@@ -560,6 +560,30 @@ public partial class GroupingTests(GroupingTestFixture fixture) : IClassFixture<
             }
             """
         },
+        {
+            // Enum as a grouping key: one bucket per value, plus a null bucket for unset seniority.
+            "KeyByEnum",
+            """
+            query EmployeeGrouping {
+                employeeGrouping {
+                    key { seniority }
+                    count
+                }
+            }
+            """
+        },
+        {
+            // Enum MIN/MAX aggregate: exercises the enum-widening path (T?, not int?).
+            "AggregateEnumMinMax",
+            """
+            query EmployeeGrouping {
+                employeeGrouping {
+                    key { company { name } }
+                    aggregate { seniority { min max(having: { eq: MID }) } }
+                }
+            }
+            """
+        }
     };
 
     [GeneratedRegex(@"^(?:\[Microsoft\.EntityFrameworkCore\.Query\.EntityQueryRootExpression\]|MongoQuery)")]

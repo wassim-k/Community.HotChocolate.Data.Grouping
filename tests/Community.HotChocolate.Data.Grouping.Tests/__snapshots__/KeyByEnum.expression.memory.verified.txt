@@ -1,0 +1,1 @@
+﻿EnumerableQuery.GroupBy(src => new AnonymousType(src.Seniority)).Select(g => new AnonymousType(g.Key, g.Count()))

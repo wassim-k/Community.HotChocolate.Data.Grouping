@@ -1,0 +1,15 @@
+﻿[
+  {
+    "key": {
+      "company": {
+        "name": "Globex"
+      }
+    },
+    "aggregate": {
+      "seniority": {
+        "min": "JUNIOR",
+        "max": "MID"
+      }
+    }
+  }
+]

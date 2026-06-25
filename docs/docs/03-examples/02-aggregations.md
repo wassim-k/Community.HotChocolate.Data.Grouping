@@ -37,6 +37,7 @@ Every scalar leaf is exposed as an `*AggregateResult`. Numeric scalars expose `a
 | `DateTime`/`DateTimeOffset`            | `DateTime*AggregateResult`   | `min max`           |
 | `DateOnly`/`TimeOnly`                  | `*AggregateResult`           | `min max`           |
 | `TimeSpan`                             | `TimeSpanAggregateResult`    | `min max`           |
+| any `enum`                             | `{Enum}AggregateResult`      | `min max`           |
 
 Every operation slot is nullable: empty buckets project `null` rather than throwing. Null values are excluded from `avg`/`sum` (the divisor for `avg` is the count of non-null values).
 
