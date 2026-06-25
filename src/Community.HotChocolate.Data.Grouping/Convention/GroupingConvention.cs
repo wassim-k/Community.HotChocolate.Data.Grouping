@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using HotChocolate.Data.Grouping.Execution.QueryableGrouping;
 using HotChocolate.Data.Grouping.Fields;
 using HotChocolate.Types.Descriptors;
@@ -90,21 +91,45 @@ public class GroupingConvention : Convention<GroupingConventionConfiguration>, I
     {
         ArgumentNullException.ThrowIfNull(sourceClr);
         var key = Nullable.GetUnderlyingType(sourceClr) ?? sourceClr;
-        if (!_aggregateBindings.TryGetValue(key, out var binding))
+
+        if (!TryResolveResultType(key, out var resultType, out var scalarKind))
         {
             return null;
         }
 
         // Comparable scalars expose only Min/Max, so skip them when the user's flags exclude both,
         // otherwise the *AggregateResult ends up with no fields and HC fails schema build.
-        if (_scalarKinds.TryGetValue(key, out var scalarKind) &&
-            scalarKind == GroupingScalarKind.Comparable &&
+        if (scalarKind == GroupingScalarKind.Comparable &&
             (_allowedAggregations & (GroupingAggregations.Min | GroupingAggregations.Max)) == 0)
         {
             return null;
         }
 
-        return binding.ResultType;
+        return resultType;
+    }
+
+    private bool TryResolveResultType(
+        Type key,
+        [NotNullWhen(true)] out Type? resultType,
+        out GroupingScalarKind scalarKind)
+    {
+        if (_aggregateBindings.TryGetValue(key, out var binding))
+        {
+            resultType = binding.ResultType;
+            scalarKind = _scalarKinds.GetValueOrDefault(key);
+            return true;
+        }
+
+        if (key.IsEnum)
+        {
+            resultType = typeof(Aggregates.EnumAggregateResultType<>).MakeGenericType(key);
+            scalarKind = GroupingScalarKind.Comparable;
+            return true;
+        }
+
+        resultType = null;
+        scalarKind = default;
+        return false;
     }
 
     private static IGroupingProvider ResolveGroupingProvider(

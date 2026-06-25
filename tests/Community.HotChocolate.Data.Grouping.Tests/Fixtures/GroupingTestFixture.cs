@@ -21,6 +21,7 @@ public class GroupingTestFixture : IAsyncDisposable
         Active = true,
         Salary = 100_000d,
         Bonus = 10_000m,
+        Seniority = Seniority.Senior,
         DepartmentId = 1,
         Department = new Department { Id = 1, Name = "Engineering", Budget = 500_000m },
         CompanyId = 1,
@@ -59,6 +60,7 @@ public class GroupingTestFixture : IAsyncDisposable
         Active = true,
         Salary = 120_000d,
         Bonus = 20_000m,
+        Seniority = Seniority.Senior,
         DepartmentId = 2,
         Department = new Department { Id = 2, Name = "Sales", Budget = 300_000m },
         CompanyId = 1,
@@ -90,6 +92,7 @@ public class GroupingTestFixture : IAsyncDisposable
             Active = true,
             Salary = 80_000d,
             Bonus = null,
+            Seniority = Seniority.Mid,
             DepartmentId = 1,
             Department = new Department { Id = 1, Name = "Engineering", Budget = 500_000m },
             CompanyId = 1,
@@ -113,6 +116,7 @@ public class GroupingTestFixture : IAsyncDisposable
             Active = true,
             Salary = 90_000d,
             Bonus = 5_000m,
+            Seniority = Seniority.Mid,
             DepartmentId = 3,
             Department = new Department { Id = 3, Name = "Engineering", Budget = 700_000m },
             CompanyId = 2,
@@ -131,6 +135,7 @@ public class GroupingTestFixture : IAsyncDisposable
             Active = true,
             Salary = 95_000d,
             Bonus = null,
+            Seniority = Seniority.Junior,
             DepartmentId = 3,
             Department = new Department { Id = 3, Name = "Engineering", Budget = 700_000m },
             CompanyId = 2,
@@ -157,6 +162,7 @@ public class GroupingTestFixture : IAsyncDisposable
             Name = "Grace",
             Salary = 60_000d,
             Bonus = null,
+            Seniority = Seniority.Junior,
             DepartmentId = null,
             Department = null,
             CompanyId = 1,
@@ -338,6 +344,15 @@ public class GroupingTestFixture : IAsyncDisposable
         public int? ManagerId { get; set; }
 
         public virtual Employee? Manager { get; set; }
+
+        public Seniority? Seniority { get; set; }
+    }
+
+    public enum Seniority
+    {
+        Junior,
+        Mid,
+        Senior,
     }
 
     public record Project

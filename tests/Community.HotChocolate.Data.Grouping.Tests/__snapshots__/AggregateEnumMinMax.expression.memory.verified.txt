@@ -1,0 +1,9 @@
+﻿EnumerableQuery
+    .GroupBy(src => new AnonymousType((src.Company != null) ? src.Company.Name : null))
+    .Select(
+        g => new AnonymousType(
+            g.Key,
+            g.Count(),
+            g.Min(e => e.Seniority),
+            g.Max(e => e.Seniority)))
+    .Where(row => row.Item4 == p)

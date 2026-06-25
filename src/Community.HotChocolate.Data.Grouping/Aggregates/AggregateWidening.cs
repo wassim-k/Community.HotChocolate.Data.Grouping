@@ -69,6 +69,7 @@ public static class AggregateWidening
 
     private static Category Categorise(Type t) => Type.GetTypeCode(t) switch
     {
+        _ when t.IsEnum => Category.OtherValueType,
         TypeCode.Byte or TypeCode.SByte
             or TypeCode.Int16 or TypeCode.UInt16
             or TypeCode.Int32 => Category.SmallIntegral,
